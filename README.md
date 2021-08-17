@@ -33,8 +33,8 @@ const options = [
 |Prop|Type|Details|
 |----|----|-------|
 |`borderColor?`|`string`|The border color<br />Default: `#cdcdcf`|
-|`borderWidth?`|`number|string`|The border width<br />Default: `1`|
-|`borderRadius?`|`number|string`|The border radius<br />Default: `4`|
+|`borderWidth?`|`number\|string`|The border width<br />Default: `1`|
+|`borderRadius?`|`number\|string`|The border radius<br />Default: `4`|
 |`borderStyle?`|`string`|The border style (e.g. `solid`, `dashed`, etc.)<br />Default: `solid`|
 |`dropDownClassName?`|`string`|The className to apply to the dropdown|
 |`dropDownStyle?`|`React.CSSProperties`|The styles to apply to the dropdown|
