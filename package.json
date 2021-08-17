@@ -1,0 +1,61 @@
+{
+  "name": "@super-effective/react-dropdown-input",
+  "version": "1.0.0",
+  "description": "React Dropdown/Select Input allowing for custom styling and content",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "types": "build/index.d.ts",
+  "repository": "https://github.com/super-effective/react-dropdown-input",
+  "author": "SuperEffective <hello@wearesupereffective.com>",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "react",
+    "component",
+    "dropdown",
+    "input",
+    "select"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prepare": "yarn build",
+    "prepublish": "yarn build",
+    "dev": "rollup -c -w"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-image": "^2.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@types/react": "^17.0.18",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-css-modules": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "postcss": "^8.3.6",
+    "prettier": "^2.3.2",
+    "rollup": "^2.56.2",
+    "rollup-plugin-includepaths": "^0.2.4",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "sass": "^1.37.5",
+    "tslib": "^2.3.1",
+    "typescript": "^4.3.5"
+  }
+}

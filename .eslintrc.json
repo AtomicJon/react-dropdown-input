@@ -1,0 +1,49 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:react/recommended",
+    "plugin:css-modules/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "css-modules",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "arrow-body-style": ["error", "as-needed"],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-use-before-define": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".ts", ".tsx"]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}
