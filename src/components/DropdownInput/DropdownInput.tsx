@@ -104,7 +104,7 @@ const DropdownInput = ({
       list.scrollTop =
         option.offsetTop - list.clientHeight + option.clientHeight;
     }
-  }, [selectedOptionId]);
+  }, [selectedOptionId, isExpanded]);
 
   const onToggle = () => {
     setIsExpanded((isCurrentlyExpanded) => !isCurrentlyExpanded);
