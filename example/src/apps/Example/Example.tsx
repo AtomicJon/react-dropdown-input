@@ -17,16 +17,16 @@ const Example = () => {
         <DropdownInput
           dropDownClassName={styles.dropDown}
           options={options}
-          selectedOptionId={selectedOptionId}
-          onOptionSelected={setSelectedOptionId}
+          value={selectedOptionId}
+          onChange={setSelectedOptionId}
         />
       </section>
       <section>
         <h1>Fluid</h1>
         <DropdownInput
           options={options}
-          selectedOptionId={selectedOptionId}
-          onOptionSelected={setSelectedOptionId}
+          value={selectedOptionId}
+          onChange={setSelectedOptionId}
           fluid
         />
       </section>
@@ -34,8 +34,8 @@ const Example = () => {
         <h1>Custom Icon</h1>
         <DropdownInput
           options={options}
-          selectedOptionId={selectedOptionId}
-          onOptionSelected={setSelectedOptionId}
+          value={selectedOptionId}
+          onChange={setSelectedOptionId}
           fluid
           toggleIcon={
             <span role="img" aria-label="expand">
@@ -49,7 +49,7 @@ const Example = () => {
         <DropdownInput
           placeholder="Select an option..."
           options={options}
-          onOptionSelected={setSelectedOptionId}
+          onChange={setSelectedOptionId}
         />
       </section>
       <section>

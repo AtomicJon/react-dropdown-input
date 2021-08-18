@@ -1,6 +1,6 @@
 {
   "name": "@super-effective/react-dropdown-input",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "React Dropdown/Select Input allowing for custom styling and content",
   "main": "build/index.js",
   "module": "build/index.es.js",

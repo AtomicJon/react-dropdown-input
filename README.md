@@ -46,6 +46,6 @@ const options = [
 |`paddingVertical?`|`number`|Vertical padding - applies to the drop down itself and its items (overrides `padding`)<br />Default: `8`|
 |`placeholder?`|`ReactNode`|The content to display when no option is selected<br />Default: "&nbsp;"|
 |`selectedOptionClassName`|`string`|The className to apply to the selected option|
-|`selectedOptionId`|`string`|The id of the selected option|
 |`toggleIcon`|`ReactNode`|The element to display as the toggle icon|
-|`onOptionSelected`|`(id: string) => void`|The callback function to be called when the selected option changes|
+|`value`|`string`|The id of the selected option|
+|`onChange`|`(id: string) => void`|The callback function to be called when the selected option changes|

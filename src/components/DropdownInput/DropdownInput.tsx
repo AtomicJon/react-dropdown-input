@@ -42,10 +42,10 @@ export type DropdownInputProps = {
   paddingVertical?: number;
   placeholder?: ReactNode;
   selectedOptionClassName?: string;
-  selectedOptionId?: string;
+  value?: string;
   toggleIcon?: React.ReactNode;
-  onOptionSelected: (id: string) => void;
-} & React.ComponentProps<'div'>;
+  onChange: (id: string) => void;
+} & Omit<React.ComponentProps<'div'>, 'onChange'>;
 
 const DropdownInput = ({
   'aria-labelledby': ariaLabelledBy,
@@ -64,9 +64,9 @@ const DropdownInput = ({
   paddingVertical,
   placeholder = '\u00a0',
   selectedOptionClassName,
-  selectedOptionId,
   toggleIcon,
-  onOptionSelected,
+  value,
+  onChange,
   ...rest
 }: DropdownInputProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -84,7 +84,7 @@ const DropdownInput = ({
 
   // If the list is scrollable, ensure selected option is visible
   useLayoutEffect(() => {
-    if (!listRef.current || !selectedOptionRef.current) {
+    if (!isExpanded || !listRef.current || !selectedOptionRef.current) {
       return;
     }
 
@@ -104,7 +104,7 @@ const DropdownInput = ({
       list.scrollTop =
         option.offsetTop - list.clientHeight + option.clientHeight;
     }
-  }, [selectedOptionId, isExpanded]);
+  }, [value, isExpanded]);
 
   const onToggle = () => {
     setIsExpanded((isCurrentlyExpanded) => !isCurrentlyExpanded);
@@ -112,7 +112,7 @@ const DropdownInput = ({
 
   const onSelect = (id: string) => {
     setIsExpanded(false);
-    onOptionSelected(id);
+    onChange(id);
   };
 
   const onListBlur = () => {
@@ -185,16 +185,14 @@ const DropdownInput = ({
           break;
         }
 
-        const currentIndex = options.findIndex(
-          (option) => option.id === selectedOptionId,
-        );
+        const currentIndex = options.findIndex((option) => option.id === value);
 
         // Select the next option or loop to start
         const nextIndex =
           currentIndex === options.length - 1 || currentIndex == -1
             ? 0
             : currentIndex + 1;
-        onOptionSelected(options[nextIndex].id);
+        onChange(options[nextIndex].id);
         evt.preventDefault();
         break;
       }
@@ -205,24 +203,22 @@ const DropdownInput = ({
         }
 
         // Select previous option or loop to end
-        const currentIndex = options.findIndex(
-          (option) => option.id === selectedOptionId,
-        );
+        const currentIndex = options.findIndex((option) => option.id === value);
         const nextIndex =
           currentIndex === 0 || currentIndex === -1
             ? options.length - 1
             : currentIndex - 1;
-        onOptionSelected(options[nextIndex].id);
+        onChange(options[nextIndex].id);
         evt.preventDefault();
         break;
       }
       case 'Home': {
-        onOptionSelected(options[0].id);
+        onChange(options[0].id);
         evt.preventDefault();
         break;
       }
       case 'End': {
-        onOptionSelected(options[options.length - 1].id);
+        onChange(options[options.length - 1].id);
         evt.preventDefault();
         break;
       }
@@ -234,12 +230,10 @@ const DropdownInput = ({
   };
 
   const selectedOption =
-    selectedOptionId !== undefined
-      ? options.find((option) => option.id === selectedOptionId)
-      : null;
+    value !== undefined ? options.find((option) => option.id === value) : null;
   const displayedOptions =
-    excludeSelectedOption && selectedOptionId !== undefined
-      ? options.filter((option) => option.id !== selectedOptionId)
+    excludeSelectedOption && value !== undefined
+      ? options.filter((option) => option.id !== value)
       : options;
 
   const activeSelectedOptionClassName =
@@ -323,13 +317,13 @@ const DropdownInput = ({
       >
         {displayedOptions.map(({ id, content }) => (
           <li
-            aria-selected={id === selectedOptionId}
+            aria-selected={id === value}
             key={id}
             className={classNames(styles.option, {
-              [activeSelectedOptionClassName]: id === selectedOptionId,
+              [activeSelectedOptionClassName]: id === value,
             })}
             role="option"
-            ref={id === selectedOptionId ? selectedOptionRef : undefined}
+            ref={id === value ? selectedOptionRef : undefined}
             style={{
               paddingLeft: activeHorizontalPadding,
               paddingRight: activeHorizontalPadding,
