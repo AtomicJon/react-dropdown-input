@@ -1,4 +1,4 @@
-import DropDownInput from './components/DropDownInput';
+import DropdownInput from './components/DropdownInput';
 
 export {
   DEFAULT_BORDER_COLOR,
@@ -6,8 +6,8 @@ export {
   DEFAULT_BORDER_STYLE,
   DEFAULT_HORIZONTAL_PADDING,
   DEFAULT_VERTICAL_PADDING,
-  DropDownInputOption,
-  DropDownInputProps,
-} from './components/DropDownInput';
+  DropdownInputOption,
+  DropdownInputProps,
+} from './components/DropdownInput';
 
-export default DropDownInput;
+export default DropdownInput;

@@ -1,4 +1,4 @@
-import DropDownInput from '@super-effective/react-dropdown-input';
+import DropdownInput from '@super-effective/react-dropdown-input';
 import { useState } from 'react';
 
 import styles from './Example.module.scss';
@@ -14,7 +14,7 @@ const Example = () => {
     <div>
       <section>
         <h1>Default</h1>
-        <DropDownInput
+        <DropdownInput
           dropDownClassName={styles.dropDown}
           options={options}
           selectedOptionId={selectedOptionId}
@@ -23,7 +23,7 @@ const Example = () => {
       </section>
       <section>
         <h1>Fluid</h1>
-        <DropDownInput
+        <DropdownInput
           options={options}
           selectedOptionId={selectedOptionId}
           onOptionSelected={setSelectedOptionId}
@@ -32,7 +32,7 @@ const Example = () => {
       </section>
       <section>
         <h1>Custom Icon</h1>
-        <DropDownInput
+        <DropdownInput
           options={options}
           selectedOptionId={selectedOptionId}
           onOptionSelected={setSelectedOptionId}
@@ -46,7 +46,7 @@ const Example = () => {
       </section>
       <section>
         <h1>Empty Selection</h1>
-        <DropDownInput
+        <DropdownInput
           placeholder="Select an option..."
           options={options}
           onOptionSelected={setSelectedOptionId}

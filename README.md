@@ -40,7 +40,7 @@ const options = [
 |`dropDownStyle?`|`React.CSSProperties`|The styles to apply to the dropdown|
 |`excludeSelectedOption?`|`boolean`|Exclude the selected option from the list<br />Default: `false`|
 |`fluid?`|`boolean`|Display the dropdown as a fluid item (no division between the value and the dropdown)<br />Default: `false`
-|`options`|`DropDownInputOption[]`|The array options <br>`{ id: string; content: ReactNode; }`|
+|`options`|`DropdownInputOption[]`|The array options <br>`{ id: string; content: ReactNode; }`|
 |`padding?`|`number`|Padding - applies to the drop down itself and its items|
 |`paddingHorizontal?`|`number`|Horizontal padding - applies to the drop down itself and its items (overrides `padding`)<br />Default: `12`|
 |`paddingVertical?`|`number`|Vertical padding - applies to the drop down itself and its items (overrides `padding`)<br />Default: `8`|

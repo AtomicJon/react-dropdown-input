@@ -2,7 +2,7 @@ import React, { ReactNode, useLayoutEffect, useRef, useState } from 'react';
 
 import classNames from 'util/classNames';
 
-import styles from './DropDownInput.module.scss';
+import styles from './DropdownInput.module.scss';
 import dropdownImg from './assets/icon-dropdown.svg';
 
 export const DEFAULT_BORDER_COLOR = '#cdcdcf';
@@ -12,12 +12,12 @@ export const DEFAULT_BORDER_STYLE = 'solid';
 export const DEFAULT_HORIZONTAL_PADDING = 12;
 export const DEFAULT_VERTICAL_PADDING = 8;
 
-export type DropDownInputOption = {
+export type DropdownInputOption = {
   id: string;
   content: ReactNode;
 };
 
-export type DropDownInputProps = {
+export type DropdownInputProps = {
   borderColor?: string;
   borderWidth?: number | string;
   borderRadius?: number | string;
@@ -36,7 +36,7 @@ export type DropDownInputProps = {
   dropDownStyle?: React.CSSProperties;
   excludeSelectedOption?: boolean;
   fluid?: boolean;
-  options?: DropDownInputOption[];
+  options?: DropdownInputOption[];
   padding?: number;
   paddingHorizontal?: number;
   paddingVertical?: number;
@@ -47,7 +47,7 @@ export type DropDownInputProps = {
   onOptionSelected: (id: string) => void;
 } & React.ComponentProps<'div'>;
 
-const DropDownInput = ({
+const DropdownInput = ({
   'aria-labelledby': ariaLabelledBy,
   borderColor = DEFAULT_BORDER_COLOR,
   borderWidth = DEFAULT_BORDER_WIDTH,
@@ -68,7 +68,7 @@ const DropDownInput = ({
   toggleIcon,
   onOptionSelected,
   ...rest
-}: DropDownInputProps) => {
+}: DropdownInputProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const valueRef = useRef<HTMLDivElement>(null);
@@ -347,4 +347,4 @@ const DropDownInput = ({
   );
 };
 
-export default DropDownInput;
+export default DropdownInput;
