@@ -40,12 +40,12 @@ const options = [
 |`dropDownStyle?`|`React.CSSProperties`|The styles to apply to the dropdown|
 |`excludeSelectedOption?`|`boolean`|Exclude the selected option from the list<br />Default: `false`|
 |`fluid?`|`boolean`|Display the dropdown as a fluid item (no division between the value and the dropdown)<br />Default: `false`
-|`options`|`DropDownInputOption[]`|The array options <br>`{ id: string; content: ReactNode; }`|
+|`options`|`DropdownInputOption[]`|The array options <br>`{ id: string; content: ReactNode; }`|
 |`padding?`|`number`|Padding - applies to the drop down itself and its items|
 |`paddingHorizontal?`|`number`|Horizontal padding - applies to the drop down itself and its items (overrides `padding`)<br />Default: `12`|
 |`paddingVertical?`|`number`|Vertical padding - applies to the drop down itself and its items (overrides `padding`)<br />Default: `8`|
 |`placeholder?`|`ReactNode`|The content to display when no option is selected<br />Default: "&nbsp;"|
 |`selectedOptionClassName`|`string`|The className to apply to the selected option|
-|`selectedOptionId`|`string`|The id of the selected option|
 |`toggleIcon`|`ReactNode`|The element to display as the toggle icon|
-|`onOptionSelected`|`(id: string) => void`|The callback function to be called when the selected option changes|
+|`value`|`string`|The id of the selected option|
+|`onChange`|`(id: string) => void`|The callback function to be called when the selected option changes|

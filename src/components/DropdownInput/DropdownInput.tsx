@@ -2,7 +2,7 @@ import React, { ReactNode, useLayoutEffect, useRef, useState } from 'react';
 
 import classNames from 'util/classNames';
 
-import styles from './DropDownInput.module.scss';
+import styles from './DropdownInput.module.scss';
 import dropdownImg from './assets/icon-dropdown.svg';
 
 export const DEFAULT_BORDER_COLOR = '#cdcdcf';
@@ -12,12 +12,12 @@ export const DEFAULT_BORDER_STYLE = 'solid';
 export const DEFAULT_HORIZONTAL_PADDING = 12;
 export const DEFAULT_VERTICAL_PADDING = 8;
 
-export type DropDownInputOption = {
+export type DropdownInputOption = {
   id: string;
   content: ReactNode;
 };
 
-export type DropDownInputProps = {
+export type DropdownInputProps = {
   borderColor?: string;
   borderWidth?: number | string;
   borderRadius?: number | string;
@@ -36,18 +36,18 @@ export type DropDownInputProps = {
   dropDownStyle?: React.CSSProperties;
   excludeSelectedOption?: boolean;
   fluid?: boolean;
-  options?: DropDownInputOption[];
+  options?: DropdownInputOption[];
   padding?: number;
   paddingHorizontal?: number;
   paddingVertical?: number;
   placeholder?: ReactNode;
   selectedOptionClassName?: string;
-  selectedOptionId?: string;
+  value?: string;
   toggleIcon?: React.ReactNode;
-  onOptionSelected: (id: string) => void;
-} & React.ComponentProps<'div'>;
+  onChange: (id: string) => void;
+} & Omit<React.ComponentProps<'div'>, 'onChange'>;
 
-const DropDownInput = ({
+const DropdownInput = ({
   'aria-labelledby': ariaLabelledBy,
   borderColor = DEFAULT_BORDER_COLOR,
   borderWidth = DEFAULT_BORDER_WIDTH,
@@ -64,11 +64,11 @@ const DropDownInput = ({
   paddingVertical,
   placeholder = '\u00a0',
   selectedOptionClassName,
-  selectedOptionId,
   toggleIcon,
-  onOptionSelected,
+  value,
+  onChange,
   ...rest
-}: DropDownInputProps) => {
+}: DropdownInputProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const valueRef = useRef<HTMLDivElement>(null);
@@ -84,7 +84,7 @@ const DropDownInput = ({
 
   // If the list is scrollable, ensure selected option is visible
   useLayoutEffect(() => {
-    if (!listRef.current || !selectedOptionRef.current) {
+    if (!isExpanded || !listRef.current || !selectedOptionRef.current) {
       return;
     }
 
@@ -104,7 +104,7 @@ const DropDownInput = ({
       list.scrollTop =
         option.offsetTop - list.clientHeight + option.clientHeight;
     }
-  }, [selectedOptionId]);
+  }, [value, isExpanded]);
 
   const onToggle = () => {
     setIsExpanded((isCurrentlyExpanded) => !isCurrentlyExpanded);
@@ -112,7 +112,7 @@ const DropDownInput = ({
 
   const onSelect = (id: string) => {
     setIsExpanded(false);
-    onOptionSelected(id);
+    onChange(id);
   };
 
   const onListBlur = () => {
@@ -185,16 +185,14 @@ const DropDownInput = ({
           break;
         }
 
-        const currentIndex = options.findIndex(
-          (option) => option.id === selectedOptionId,
-        );
+        const currentIndex = options.findIndex((option) => option.id === value);
 
         // Select the next option or loop to start
         const nextIndex =
           currentIndex === options.length - 1 || currentIndex == -1
             ? 0
             : currentIndex + 1;
-        onOptionSelected(options[nextIndex].id);
+        onChange(options[nextIndex].id);
         evt.preventDefault();
         break;
       }
@@ -205,24 +203,22 @@ const DropDownInput = ({
         }
 
         // Select previous option or loop to end
-        const currentIndex = options.findIndex(
-          (option) => option.id === selectedOptionId,
-        );
+        const currentIndex = options.findIndex((option) => option.id === value);
         const nextIndex =
           currentIndex === 0 || currentIndex === -1
             ? options.length - 1
             : currentIndex - 1;
-        onOptionSelected(options[nextIndex].id);
+        onChange(options[nextIndex].id);
         evt.preventDefault();
         break;
       }
       case 'Home': {
-        onOptionSelected(options[0].id);
+        onChange(options[0].id);
         evt.preventDefault();
         break;
       }
       case 'End': {
-        onOptionSelected(options[options.length - 1].id);
+        onChange(options[options.length - 1].id);
         evt.preventDefault();
         break;
       }
@@ -234,12 +230,10 @@ const DropDownInput = ({
   };
 
   const selectedOption =
-    selectedOptionId !== undefined
-      ? options.find((option) => option.id === selectedOptionId)
-      : null;
+    value !== undefined ? options.find((option) => option.id === value) : null;
   const displayedOptions =
-    excludeSelectedOption && selectedOptionId !== undefined
-      ? options.filter((option) => option.id !== selectedOptionId)
+    excludeSelectedOption && value !== undefined
+      ? options.filter((option) => option.id !== value)
       : options;
 
   const activeSelectedOptionClassName =
@@ -323,13 +317,13 @@ const DropDownInput = ({
       >
         {displayedOptions.map(({ id, content }) => (
           <li
-            aria-selected={id === selectedOptionId}
+            aria-selected={id === value}
             key={id}
             className={classNames(styles.option, {
-              [activeSelectedOptionClassName]: id === selectedOptionId,
+              [activeSelectedOptionClassName]: id === value,
             })}
             role="option"
-            ref={id === selectedOptionId ? selectedOptionRef : undefined}
+            ref={id === value ? selectedOptionRef : undefined}
             style={{
               paddingLeft: activeHorizontalPadding,
               paddingRight: activeHorizontalPadding,
@@ -347,4 +341,4 @@ const DropDownInput = ({
   );
 };
 
-export default DropDownInput;
+export default DropdownInput;
